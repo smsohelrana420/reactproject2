@@ -1,5 +1,5 @@
 import React from 'react'
-import herobg from "../assets/hero-bg.jpg"
+import herobg from "../../assets/hero-bg.jpg"
 const Hero = () => {
   return (
     <div style={{backgroundImage:`url(${herobg})`}} className='flex flex-col items-center text-white h-[90vh] bg-no-repeat bg-cover bg-center justify-center px-4 text-center'>

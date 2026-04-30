@@ -80,10 +80,14 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-
+        
+        <Link to={'/login'}>
+        
         <button className="hidden md:block bg-white text-black cursor-pointer px-6 py-2 rounded text-xl hover:bg-slate-400 ">
           Login
         </button>
+        </Link>
+
 
         {/* Mobile Menu Collapsed */}
 
