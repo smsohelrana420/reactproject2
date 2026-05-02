@@ -28,7 +28,7 @@ const Navbar = () => {
         <h3>Simple React</h3>
         {/* Mobile Menu Button  */}
 
-        <div className="md:hidden">
+        <div className="md:hidden ml-auto">
           <button onClick={toggleMenu}>
             {isOpen ? <IoMdClose /> : <FaBars />}
           </button>
