@@ -23,7 +23,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="bg-green-700 border-b-2 border-green-500 text-white py-4 md:py-8 sticky top-0 z-10">
+    <nav className="bg-black/60 text-white py-4 md:py-8 fixed w-full top-0 ">
       <div className="container flex justify-between items-center">
         <h3>Simple React</h3>
         {/* Mobile Menu Button  */}
@@ -92,7 +92,7 @@ const Navbar = () => {
         {/* Mobile Menu Collapsed */}
 
         <div
-          className={`md:hidden  w-full absolute bg-green-600 top-full left-0 ${isOpen ? "block" : "hidden"}`}
+          className={`md:hidden  w-full absolute bg-green-950 top-full left-0 ${isOpen ? "block" : "hidden"}`}
         >
           <ul className="flex flex-col items-center py-2 space-y-2">
             <li>Home</li>
