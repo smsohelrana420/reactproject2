@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { FaBars } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { Link, useLocation } from 'react-router-dom';
+
+
 const Navbar = () => {
+
+
+ 
   const [isOpen,setIsOpen] =useState(false)
 
   const [activeLink,setActiveLink]=useState('/')
