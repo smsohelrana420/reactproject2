@@ -1,30 +1,67 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { FaGoogle } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import { AuthContext } from '../../providers/AuthProvider';
 const Login = () => {
+
+ const { signInWithEmailPass } = useContext(AuthContext);
+  const [showPass,setShowPass]=useState(false)
+  const handleLoginForm =(e)=>{
+    e.preventDefault();
+
+    const email=e.target.email.value;
+    const password=e.target.password.value;
+
+    signInWithEmailPass(email,password)
+    .then(result =>{
+      const user=result.user
+      console.log(user);
+      
+    }).catch((err)=>{
+      console.error(err)
+    })
+    
+
+
+  }
   return (
-    <div className="flex items-center justify-center h-[115vh] bg-green-950 pt-10">
-      <div className=" bg-white p-8 max-w-sm">
+    <div className="flex items-center justify-center h-[125vh] bg-green-950 pt-10">
+      <div className=" bg-white p-8 w-100">
         <h2 className="text-green-800 font-bold text-center text-2xl mb-6">
           Login
         </h2>
-        <form className="space-y-4 ">
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
-            name=""
-            id=""
-          />
+        <form onSubmit={handleLoginForm} className="space-y-4 ">
+          <div>
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+              name="email"
+              id=""
+            />
+          </div>
 
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
-            name=""
-            id=""
-          />
+          <div className="flex relative items-center">
+            <input
+              type={showPass ? "text" : "password"}
+              placeholder="Password"
+              className="w-full border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+              name="password"
+              id=""
+            />
+            {showPass ? (
+              <FaEye
+                onClick={() => setShowPass(!showPass)}
+                className="absolute right-3 cursor-pointer"
+              />
+            ) : (
+              <FaEyeSlash
+                onClick={() => setShowPass(!showPass)}
+                className="absolute right-3 cursor-pointer"
+              />
+            )}
+          </div>
 
           <p className="text-right hover:text-green-400 cursor-pointer hover:underline">
             Forgot Password

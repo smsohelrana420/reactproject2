@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaBars } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { Link, useLocation } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 
 const Navbar = () => {
 
-
+  const { user, handleSignOut } = useContext(AuthContext);
  
   const [isOpen,setIsOpen] =useState(false)
 
   const [activeLink,setActiveLink]=useState('/')
 
   const location=useLocation()
+
+  const handleSignOutUser=()=>{
+    handleSignOut()
+  }
 
   useEffect(()=>{
   setActiveLink(location.pathname || '/')
@@ -85,14 +90,25 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-        
-        <Link to={'/login'}>
-        
-        <button className="hidden md:block bg-white text-black cursor-pointer px-6 py-2 rounded text-xl hover:bg-slate-400 ">
-          Login
-        </button>
-        </Link>
-
+        <div>
+          {user ? (
+            <div className="flex items-center">
+              <span>{user?.email}</span>{" "}
+              <button onClick={handleSignOutUser} className="hidden md:block bg-white text-black cursor-pointer px-6 py-2 rounded text-xl hover:bg-slate-400 ">
+                Sign Out
+              </button>{" "}
+            </div>
+          ) : (
+            <div>
+              <span>{user?.email}</span>
+              <Link to={"/login"}>
+                <button className="hidden md:block bg-white text-black cursor-pointer px-6 py-2 rounded text-xl hover:bg-slate-400 ">
+                  Login
+                </button>
+              </Link>
+            </div>
+          )}
+        </div>
 
         {/* Mobile Menu Collapsed */}
 
